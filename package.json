@@ -1,0 +1,24 @@
+{
+  "name": "botpedidos-0.1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "init.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "dev": "ts-node-dev --inspect --ignore-watch node_modules app/init.ts",
+    "start": "node dist/init.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "walyson",
+  "license": "ISC",
+  "dependencies": {
+    "venom-bot": "^4.0.11"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
+  }
+}
