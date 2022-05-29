@@ -5,9 +5,10 @@
   "main": "init.js",
   "scripts": {
     "build": "tsc -p .",
-    "dev": "ts-node-dev --inspect --ignore-watch node_modules app/init.ts",
+    "dev": "ts-node-dev --inspect --ignore-watch node_modules bot/init.ts",
     "start": "node dist/init.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db": "json-server --watch db-fake/db.json",
+    "test": "ts-node-dev --inspect --ignore-watch node_modules bot/subscribers/database.ts"
   },
   "keywords": [
     "bot"
@@ -15,6 +16,7 @@
   "author": "walyson",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "venom-bot": "^4.0.11"
   },
   "devDependencies": {
