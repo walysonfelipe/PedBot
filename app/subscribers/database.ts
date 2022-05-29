@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import * as fs from 'fs'
-import { User } from '../models/user'
+import { User } from '../models/userModel'
 const MAXIMUM_INACTIVITY_SECONDS = 3600
 
 const databasePath = resolve(__dirname, '..', 'database', 'db.json')
