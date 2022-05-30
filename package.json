@@ -7,8 +7,7 @@
     "build": "tsc -p .",
     "dev": "ts-node-dev --inspect --ignore-watch node_modules app/createSession.ts",
     "start": "node dist/init.js",
-    "db": "json-server --watch db-fake/db.json",
-    "test": "ts-node-dev --inspect --ignore-watch node_modules bot/stages/hello.ts"
+    "db": "json-server --watch db-fake/db.json"
   },
   "keywords": [
     "bot"

@@ -1,6 +1,9 @@
 import {
     execute as hello
   } from './stages/hello'
+  import {
+    execute as menu
+  } from './stages/menu'
 
 export type CustomerDescriptionType = 'hello' | 'menu' | 'request'
 
@@ -18,12 +21,12 @@ interface StagesInterface {
         execute: hello
       }
     },
-    // {
-    //   customer: {
-    //     description: 'menu',
-    //     execute: execute1
-    //   }
-    // },
+    {
+      customer: {
+        description: 'menu',
+        execute: menu
+      }
+    },
     // {
     //   customer: {
     //     description: 'request',
