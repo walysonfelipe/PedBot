@@ -4,8 +4,9 @@ import {
 
 import { Message } from '../models/botModel';
 import { existsOnDatabase, saveUserOnDatabase } from '../subscribers/database';
-import sendMessage from './executeStages'
-
+import checkBeforeExecute from './checkBeforeExecute';
+import executeStages from './executeStages'
+import sendMessage from '../services/sendMessage'
 export default async function (message:Message, client:Whatsapp){
     if(message.isGroupMsg === false && message.type === 'chat' && !message.fromMe && message.from =="556198248600@c.us") {
         let user = existsOnDatabase(message.from)
@@ -14,9 +15,31 @@ export default async function (message:Message, client:Whatsapp){
           user = saveUserOnDatabase(message.from)
         }
         await client.sendSeen(message.from);
-        await client.startTyping(message.from);
+        let status = 0;
+        if(user.stage !== 0){
+            const response = await checkBeforeExecute(user, message.body)
 
-        await sendMessage(message, client, user)
+            if (response.messagesToSend.length) {
+                await sendMessage(response.messagesToSend, message, client) 
+            }
+            status = response.status
+        }
+        
+        if(status == 0 || status == 2){
+            await executeStages(message, client, user)
+        }
+
+        //  if(user.stage !== 0){
+        //     const response = await checkBeforeExecute(user, message.body)
+        //    if(response.messagesToSend.length){
+        //     await sendMessage(response.messagesToSend, message, client)     
+        //    }
+        //     else{
+        //         await executeStages(message, client, user)
+        //     }
+        // }
+    
+        
         
     }    
 }

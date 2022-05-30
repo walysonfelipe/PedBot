@@ -8,9 +8,12 @@ Esse projeto é a reformulação de um projeto que criei quando estava cursando 
 
 ## Atualizações
 
-- Enviar ao cliente Boas-Vindas após primeiro contato.
-- Reformulação de codigo para melhor entendimento
-- Criação de um Banco de Dados Fake em JSON
+- Enviar ao cliente Boas-Vindas após primeiro contato(28/05).
+- Criação de um Banco de Dados Fake em JSON(28/05)
+- Reformulação de codigo para melhor entendimento(29/05)
+- Enviando Menu para iniciar pedido(29/05) 
+- Voltar para o Menu(29/05) 
+- Encerrar atendimento(29/05) 
 
 
 ## Tecnologia utilizadas

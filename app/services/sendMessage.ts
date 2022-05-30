@@ -8,7 +8,7 @@ export default async function (
     ){
         for (let index = 0; index < messagesToSend.length; index++) {
             const element = messagesToSend[index]
-
+            await client.startTyping(message.from);
             if (element && element.constructor === Object) {
               if (element.type === 'image') {
                 await client.sendImage(

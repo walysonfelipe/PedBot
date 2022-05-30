@@ -27,12 +27,12 @@ interface StagesInterface {
         execute: menu
       }
     },
-    // {
-    //   customer: {
-    //     description: 'request',
-    //     execute: execute1
-    //   }
-    // }
+    {
+      customer: {
+        description: 'request',
+        execute: menu
+      }
+    }
   ]
   
   export default stages
