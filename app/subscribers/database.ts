@@ -1,12 +1,14 @@
+import fs from 'fs'
 import { resolve } from 'path'
-import * as fs from 'fs'
 import { User } from '../models/userModel'
+
 const MAXIMUM_INACTIVITY_SECONDS = 3600
 
 const databasePath = resolve(__dirname, '..', 'database', 'db.json')
 
 
-  function getDataOnDatabase (): User[] {
+
+function getDataOnDatabase (): User[] {
     const jsonString = String(
       fs.readFileSync(databasePath)
     )
@@ -24,16 +26,16 @@ const databasePath = resolve(__dirname, '..', 'database', 'db.json')
     }
   
     return []
-  }
+}
 
-  function writeDataOnDatabase (users: string) {
+function writeDataOnDatabase (users: string) {
     fs.writeFileSync(databasePath, users)
-  }
+}
 
-  function existsOnDatabase (from: string) {
+function existsOnDatabase (from: string) {
     const users = getDataOnDatabase()
     const user = users.filter(user => user.from === from)[0]
-  
+
     if (user) {
       const inactivityInSeconds = (Date.now() - user.updated_at) / 1000
   
@@ -43,7 +45,7 @@ const databasePath = resolve(__dirname, '..', 'database', 'db.json')
   
       changeUser(user.from, 'updated_at', Date.now())
     }
-  
+
     return user
   }
 
@@ -68,16 +70,27 @@ const databasePath = resolve(__dirname, '..', 'database', 'db.json')
     return newUser
   }
 
-
-  function getFromUser (from: string, field: string) {
+function getFromUser (from: string) {
     const users = getDataOnDatabase()
+
     const user = users.filter(user => user.from === from)[0]
-    return user[field]
+
+    return user
   }
 
-  function changeUser (from: string, field: string, value: any) {
+function removeUser (from: string) {
     const users = getDataOnDatabase()
   
+    const newUsers = users.filter(user => user.from !== from)
+  
+    const stringifyNewUsers = JSON.stringify(newUsers)
+  
+    writeDataOnDatabase(stringifyNewUsers)
+  }
+
+
+function changeUser (from: string, field: string, value: any) {
+    const users = getDataOnDatabase()
     const newUsers = users.filter(user => user.from !== from)
   
     const currentUser = users.filter(user => user.from === from)[0]
@@ -90,19 +103,10 @@ const databasePath = resolve(__dirname, '..', 'database', 'db.json')
     const stringifyNewUsers = JSON.stringify(newUsers)
   
     writeDataOnDatabase(stringifyNewUsers)
-  }
+}
 
-  function removeUser (from: string) {
-    const users = getDataOnDatabase()
-  
-    const newUsers = users.filter(user => user.from !== from)
-  
-    const stringifyNewUsers = JSON.stringify(newUsers)
-  
-    writeDataOnDatabase(stringifyNewUsers)
-  }
 
-  export {
+export {
     existsOnDatabase,
     saveUserOnDatabase,
     getFromUser,

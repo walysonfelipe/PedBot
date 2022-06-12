@@ -4,5 +4,4 @@ export class Message{
     fromMe: boolean
     body: string
     isGroupMsg: boolean
-   }
-   
+   }  

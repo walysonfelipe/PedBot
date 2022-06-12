@@ -7,7 +7,7 @@
     "build": "tsc -p .",
     "dev": "ts-node-dev --inspect --ignore-watch node_modules app/createSession.ts",
     "start": "node dist/init.js",
-    "db": "json-server --watch db-fake/db.json",
+    "db": "json-server --watch app/database/db.json",
     "test": "ts-node-dev --inspect --ignore-watch node_modules app/utils/mask.ts"
   },
   "keywords": [
@@ -17,10 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
-    "venom-bot": "^4.0.11"
+    "venom-bot": "^4.2.0"
   },
   "devDependencies": {
-    "ts-node-dev": "^1.1.6",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^4.2.4"
   }
 }
